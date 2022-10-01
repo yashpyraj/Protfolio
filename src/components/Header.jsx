@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useRef, useContext, useState, useCallback } from "react";
 import { FiChevronsDown } from "react-icons/fi";
+import { Parallax } from "react-scroll-parallax";
+import { ScrollContext } from "../utites/scroll-observer";
+import videomp4 from "../../assets/bg_video.mp4";
+import videowebm from "../../assets/bg_video.webm";
 function Header() {
+  const refContainer = useRef(null);
+  const { scrollY } = useContext(ScrollContext);
+  let progress = 0;
+  const elContainer = refContainer;
+  if (elContainer) {
+    progress = Math.min(1, scrollY / elContainer.clientHeight);
+  }
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center ">
+    <div
+      ref={refContainer}
+      className="min-h-screen flex flex-col items-center justify-center sticky top-0 -z-10"
+      style={{
+        transform: `translateY(-${progress * 20}vh)`,
+      }}
+    >
       <video
         autoPlay
         loop
@@ -10,11 +27,11 @@ function Header() {
         playsInline
         className="absolute w-full h-full object-cover"
       >
-        <source src="/src/assets/bg_video.mp4" type="video/mp4; codecs=hvc1" />
-        <source src="/src/assets/bg_video.webm" type="video/webm; codecs=vp9" />
+        <source src={videomp4} type="video/mp4" />
+        <source src={videowebm} type="video/webm; codecs=vp9" />
       </video>
       <div className="p-12 font-bold z-10 text-center text-white drop-shadow-[0_5px_3px_rgba(0,0,0,0.4)] transition-all duration-1000 flex-1 flex justify-center items-center flex-col">
-        <h1 className="mb-6 text-3xl xl:text-5xl">SP Sachin</h1>
+        <h1 className="mb-6 text-3xl xl:text-5xl">Pooja T</h1>
         <h2 className="mb-2 text-2xl xl:text-3xl tracking-tight text-white text-center">
           <span>Full-Stack Developer</span>
         </h2>
