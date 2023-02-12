@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import "./App.css";
 import Portfolio from "./components/Portfolio";
 import Header from "./components/Header";
-import About from "./components/About";
+import { ScrollContext } from "./utites/scroll-observer";
+import Projects from "./components/Projects";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
       <Header />
-      <About />
+      {/* <About /> */}
       <Portfolio />
+      <Projects />
     </div>
   );
 }

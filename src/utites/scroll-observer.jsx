@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 
-export const ScrollContext = React.createContext(scrollY);
+export const ScrollContext = React.createContext(0);
 
 const ScrollObserver = ({ children }) => {
   const [scrollY, setScrollY] = useState(0);
